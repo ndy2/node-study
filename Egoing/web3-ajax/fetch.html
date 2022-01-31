@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        
+    <article>
+        
+    </article>
+ 
+        <input type="button" value = "fetch-css" onclick="
+         fetch('css').then(function(response){
+            response.text().then(function(text){
+                alert(text);
+                document.querySelector('article').innerHTML = text;
+            })
+         })
+        ">
+    <br>
+        <input type="button" value = "fetch-html" onclick="
+         /*
+         fetch('html').then(function(response){
+            response.text().then(function(text){
+                alert(text);
+                document.querySelector('article').innerHTML = text;
+            })
+         })
+         */
+        ">
+            <br>
+    fetch('html');
+    <input type="button" value = "fetch-html" onclick="
+    fetch('html');
+   ">
+   <br>
+   fetch('html').then(cb);
+   <input type="button" value = "fetch-html" onclick="
+   //Asynchronous
+   function cb(){
+       console.log('callback');
+   }
+
+   cb = function(){
+       console.log('callback-anonymous');
+   }
+
+   fetch('html').then(cb);
+   console.log(1);
+   console.log(2);
+  ">
+
+   <br>
+   response
+   <input type="button" value = "log response" onclick="
+   cb = function(response){
+       console.log(response);
+   }
+   fetch('html').then(cb);
+  ">
+
+
+</body>
+</html>
