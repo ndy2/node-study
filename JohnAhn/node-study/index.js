@@ -5,6 +5,7 @@ const port = 5000
 const bodyParser = require('body-parser');
 const cookieParse = require('cookie-parser')
 const { User } = require("./model/User");
+const { auth } = require("./middleware/auth");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -22,7 +23,7 @@ mongoose
 
 app.get('/',(req,res)=>res.send('Hello World'))
 
-app.post('/register',(req,res)=>{
+app.post('/api/user/register',(req,res)=>{
 
     //회원 가입 할때 필요한 정보들을 client
 
@@ -35,7 +36,7 @@ app.post('/register',(req,res)=>{
     })
 });
 
-app.post('/login', (req,res)=>{
+app.post('/api/user/login', (req,res)=>{
     console.log(req.body)
     //요청된 email db에 있는지 확인
     User.findOne({email: req.body.email},(err,user) =>{
@@ -65,9 +66,12 @@ app.post('/login', (req,res)=>{
             })
         })
     })
+})
 
+app.get('/api/users/auth', auth, (req,res)=>{
 
 })
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
